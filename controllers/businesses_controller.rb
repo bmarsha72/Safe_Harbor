@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
 
   post '/register' do
     password = BCrypt::Password.create(params[:password])
-    User.create ({
+    Business.create({
     username => params[:username],
     password => password,
     email => params[:email],
@@ -11,6 +11,12 @@ class BusinessesController < ApplicationController
     zip => params[:zip],
     businessname => params[:businessname]
   })
+
+  Contact.create({
+    onlocation => params[:onlocation],
+    name => params[:name],
+    phone => params[:name]
+    })
 
   end
 end
