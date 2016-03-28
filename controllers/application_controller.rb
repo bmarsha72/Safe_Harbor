@@ -6,4 +6,13 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  get '/map' do
+    erb :map
+  end
+
+  get '/login_register' do
+    erb :login_register
+  end
+
 end
