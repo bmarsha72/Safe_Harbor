@@ -12,7 +12,7 @@ class BusinessesController < ApplicationController
     businessname => params[:businessname]
   })
 
-  Contact.create({
+    Contact.create({
     onlocation => params[:onlocation],
     name => params[:name],
     phone => params[:name]
