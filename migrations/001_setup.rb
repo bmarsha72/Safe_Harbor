@@ -10,6 +10,8 @@ Sequel.migration do
       String :address
       String :zip
       String :businessname
+      Blob :latitude
+      Blob :longitude
     end
 
     create_table(:contact) do
