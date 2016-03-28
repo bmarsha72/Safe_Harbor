@@ -3,6 +3,8 @@ Bundler.require
 
 DB = Sequel.sqlite('development.sqlite')
 
+Dotenv.load
+
 require './models/business'
 
 require './controllers/application_controller'
