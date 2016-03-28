@@ -10,3 +10,4 @@ gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 gem 'sinatra-cross_origin'
 gem 'pg'
 gem "sinatra-activerecord" #activerecord orm
+gem 'geocoder', '~> 1.3', '>= 1.3.1'
