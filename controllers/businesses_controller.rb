@@ -17,6 +17,6 @@ class BusinessesController < ApplicationController
     name => params[:name],
     phone => params[:name]
     })
-
   end
+
 end
