@@ -16,6 +16,7 @@ Sequel.migration do
       primary_key :id
       String :name
       String :phone
+      Boolean :onlocation
     end
   end
 end
