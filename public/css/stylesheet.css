@@ -29,4 +29,7 @@ section {
       .navbar .navbar-list .navbar-item .navbar-link:hover {
         color: #0FA0CE; }
 
+#map {
+  height: 100%; }
+
 /*# sourceMappingURL=stylesheet.css.map */
