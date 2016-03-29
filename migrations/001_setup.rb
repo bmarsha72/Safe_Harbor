@@ -1,6 +1,6 @@
 Sequel.migration do
   change do
-    create_table(:business) do
+    create_table(:businesses) do
       primary_key :id
       foreign_key :contact
       String :username
@@ -15,7 +15,7 @@ Sequel.migration do
       Boolean :singleuser
     end
 
-    create_table(:contact) do
+    create_table(:contacts) do
       primary_key :id
       String :name
       String :phone
