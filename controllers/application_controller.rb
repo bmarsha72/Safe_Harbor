@@ -1,5 +1,6 @@
 class ApplicationController < Sinatra::Base
 
+  @zip_code = ""
   enable :sessions
 
   set :views, File.expand_path('../../views', __FILE__)
@@ -20,6 +21,11 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     session[:logged_in] = false
     redirect '/'
+  end
+
+  post '/search' do
+    @zip_code = params[:zipcode]
+    erb :results
   end
 
 end
