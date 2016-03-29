@@ -24,7 +24,6 @@ class BusinessesController < ApplicationController
     name => params[:name],
     phone => params[:name]
     })
-<<<<<<< HEAD
   end
 
 
@@ -45,8 +44,7 @@ class BusinessesController < ApplicationController
     session[:logged_in] = false
     @user_message = "You are now logged out. Come back soon."
     redirect '/'
-=======
->>>>>>> 2f2d94751bf6fb79d8739d9921a7bcb06c4afcf0
   end
+
 
 end
