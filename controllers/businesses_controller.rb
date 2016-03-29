@@ -10,26 +10,29 @@ class BusinessesController < ApplicationController
 
   post '/register' do
     password = BCrypt::Password.create(params[:password])
-
-    puts '_--------------------------'
-    puts params
     user = Business.create({
       :username      => params[:username],
       :password      => password,
-      :email         => params[:email],
-      # :phone         => params[:phone],
-      # :address       => params[:address],
-      # :zip           => params[:zip],
-      # :businessname  => params[:businessname]
+      :email         => params[:email]
     })
-    # contact = Contact.create({
-    #   :onlocation => params[:onlocation],
-    #   :name       => params[:name],
-    #   :phone      => params[:name]
-    # })
     session[:logged_in] = true
     session[:email]  = session[:email]
     redirect '/'
+  end
+
+  post '/account/update' do
+
+    user = Business.update({
+      :phone         => params[:phone],
+      :address       => params[:address],
+      :zip           => params[:zip],
+      :businessname  => params[:businessname]
+    })
+    contact = Contact.create({
+      :onlocation => params[:onlocation],
+      :name       => params[:name],
+      :phone      => params[:name]
+    })
   end
 
   post '/login' do
