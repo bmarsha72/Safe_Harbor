@@ -1,5 +1,7 @@
 class ApplicationController < Sinatra::Base
 
+  enable :sessions
+
   set :views, File.expand_path('../../views', __FILE__)
   set :public_folder, File.expand_path('../../public', __FILE__)
 
@@ -11,8 +13,13 @@ class ApplicationController < Sinatra::Base
     erb :map
   end
 
-  get '/login_register' do
+  get '/business' do
     erb :login_register
+  end
+
+  get '/logout' do
+    session[:logged_in] = false
+    redirect '/'
   end
 
 end

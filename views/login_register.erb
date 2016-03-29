@@ -2,22 +2,24 @@
   <section class="page-content">
     <div class="six columns">
       <h2>Login</h2>
-      <form class="" action="/login" method="post">
-        <label for="">Email: </label>
-        <input type="text" name="name" value="">
-        <label for="">Password: </label>
-        <input type="password" name="name" value="">
-        <button type="submit" class="button-primary" name="password"></button>
+      <form class="" action="/business/login" method="post">
+        <label for="email">Email: </label>
+        <input type="email" class="u-full-width" name="email" value="">
+        <label for="password">Password: </label>
+        <input type="password" class="u-full-width" name="password" value="">
+        <button type="submit" class="button-primary">Login</button>
       </form>
     </div>
     <div class="six columns">
       <h2>Register your business</h2>
-      <form class="" action="/register" method="post">
-        <label for="email">Name: </label>
-        <input type="text" class="u-full-width" name="email" value="">
+      <form class="" action="/business/register" method="post">
+        <label for="username">Name: </label>
+        <input type="text" class="u-full-width" name="username" value="">
         <label for="email">Email: </label>
         <input type="text" class="u-full-width" name="email" value="">
-        <button type="submit" class="button-primary" name="button"></button>
+        <label for="password">Password: </label>
+        <input type="password" class="u-full-width" name="password" value="">
+        <button type="submit" class="button-primary">Register</button>
       </form>
     </div>
   </section>
