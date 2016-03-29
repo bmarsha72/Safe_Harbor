@@ -25,6 +25,7 @@ class ApplicationController < Sinatra::Base
 
   post '/search' do
     @zip_code = params[:zipcode]
+    p params
     erb :results
   end
 
