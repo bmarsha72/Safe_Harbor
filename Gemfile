@@ -11,3 +11,4 @@ gem 'pg'
 gem "sinatra-activerecord" #activerecord orm
 gem 'geocoder', '~> 1.3', '>= 1.3.1'
 gem 'dotenv', '~> 2.1'
+gem 'json'

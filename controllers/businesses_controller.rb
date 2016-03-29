@@ -14,6 +14,7 @@ class BusinessesController < ApplicationController
     address => params[:address],
     zip => params[:zip],
     businessname => params[:businessname]
+    
   })
 
     session[:logged_in] = true
@@ -39,6 +40,8 @@ class BusinessesController < ApplicationController
         "sorry, wrong password"
       end
   end
+
+
 
   get '/logout' do
     session[:logged_in] = false
