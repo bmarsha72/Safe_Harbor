@@ -8,5 +8,4 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 gem 'sqlite3', '~> 1.3', '>= 1.3.11'
 gem 'sinatra-cross_origin'
 gem 'pg'
-gem "sinatra-activerecord" #activerecord orm
 gem 'dotenv', '~> 2.1'
