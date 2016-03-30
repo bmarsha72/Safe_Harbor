@@ -10,7 +10,7 @@
 var ajaxCall = {
   type: 'get',
   dataType: 'json',
-  url: 'https://maps.googleapis.com/maps/api/geocode/output?json&postal_code='+<%= ENV["API_KEY"] %>'',
+  url: 'https://maps.googleapis.com/maps/api/geocode/json?address',
   success: function(data) {
     console.log(data);
   }
@@ -20,3 +20,5 @@ $(document).ready(function(){
     $.ajax(ajaxCall);
   });
 });
+
+console.log($.ajax(ajaxCall));
