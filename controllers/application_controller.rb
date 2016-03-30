@@ -1,6 +1,5 @@
 class ApplicationController < Sinatra::Base
 
-  @zip_code = ""
   enable :sessions
 
   set :views, File.expand_path('../../views', __FILE__)
@@ -24,8 +23,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/search' do
-    @zip_code = params[:zipcode]
-    p params
+    @businesses = Business.where(city: params[:city_search].downcase).all
     erb :results
   end
 

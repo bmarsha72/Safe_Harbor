@@ -8,18 +8,19 @@ Sequel.migration do
       String :email
       String :phone
       String :address
+      String :city
       String :zip
-      String :businessname
+      String :business_name
       String :latitude
       String :longitude
-      Boolean :singleuser
+      Boolean :single_user
     end
 
     create_table(:contacts) do
       primary_key :id
       String :name
       String :phone
-      Boolean :onlocation
+      Boolean :on_location
     end
   end
 end

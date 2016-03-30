@@ -15,24 +15,45 @@ class BusinessesController < ApplicationController
       :password      => password,
       :email         => params[:email]
     })
+    # contact = Contact.create({
+    #   :on_location => ""
+    # })
     session[:logged_in] = true
     session[:email]  = session[:email]
     redirect '/'
   end
 
-  post '/account/update' do
-
-    user = Business.update({
-      :phone         => params[:phone],
-      :address       => params[:address],
-      :zip           => params[:zip],
-      :businessname  => params[:businessname]
+  post '/update' do
+    # unless params[:city] == ''
+    #   location = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV['MAPS_KEY'] + '&address=' + params[:city_search]
+    #   location = JSON.parse(location.body)
+    #   latitude = location['results'][0]['geometry']['location']['lat'].to_s
+    #   longitude = location['results'][0]['geometry']['location']['lng'].to_s
+    # else
+    #   #flash message
+    # end
+    # binding.pry
+    # find the one to update
+    @business = Business[session[:current_user_id]]
+    @business.update({
+      :phone          => params[:phone],
+      :address        => params[:address],
+      :zip            => params[:zip],
+      :city           => params[:city],
+      :business_name  => params[:business_name],
+      :latitude       => latitude,
+      :longitude      => longitude
     })
-    contact = Contact.create({
-      :onlocation => params[:onlocation],
+    @contact = Contact[session[:current_user_id]]
+    @contact.update({
+      :on_location => params[:on_location],
       :name       => params[:name],
       :phone      => params[:name]
     })
+    p '---------------------'
+    p @business.all
+    p '---------------------'
+    redirect '/'
   end
 
   post '/login' do
