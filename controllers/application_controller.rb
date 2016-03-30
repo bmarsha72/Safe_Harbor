@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/search' do
-    @businesses = Business.where(city: params[:city_search].downcase).all
+    @business_match = Business.where(city: params[:city_search].downcase).all
     erb :results
   end
 

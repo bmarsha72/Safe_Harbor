@@ -15,43 +15,43 @@ class BusinessesController < ApplicationController
       :password      => password,
       :email         => params[:email]
     })
-    # contact = Contact.create({
-    #   :on_location => ""
-    # })
+    contact = Contact.create({
+      :name => ""
+    })
     session[:logged_in] = true
     session[:email]  = session[:email]
     redirect '/'
   end
 
   post '/update' do
-    # unless params[:city] == ''
-    #   location = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV['MAPS_KEY'] + '&address=' + params[:city_search]
-    #   location = JSON.parse(location.body)
-    #   latitude = location['results'][0]['geometry']['location']['lat'].to_s
-    #   longitude = location['results'][0]['geometry']['location']['lng'].to_s
-    # else
-    #   #flash message
-    # end
+    unless params[:city] == ''
+      location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address=' + params[:city_search].to_json
+      location  = JSON.parse(location.body)
+      latitude  = location['results'][0]['geometry']['location']['lat'].to_s
+      longitude = location['results'][0]['geometry']['location']['lng'].to_s
+    else
+      #flash message
+    end
     # binding.pry
     # find the one to update
     @business = Business[session[:current_user_id]]
     @business.update({
       :phone          => params[:phone],
-      :address        => params[:address],
+      :address        => params[:address].downcase,
       :zip            => params[:zip],
-      :city           => params[:city],
-      :business_name  => params[:business_name],
+      :city           => params[:city].downcase,
+      :business_name  => params[:business_name].downcase,
       :latitude       => latitude,
       :longitude      => longitude
     })
     @contact = Contact[session[:current_user_id]]
     @contact.update({
-      :on_location => params[:on_location],
-      :name       => params[:name],
-      :phone      => params[:name]
+      :on_location  => params[:on_location],
+      :name         => params[:name].downcase,
+      :phone        => params[:phone]
     })
     p '---------------------'
-    p @business.all
+    p 
     p '---------------------'
     redirect '/'
   end
