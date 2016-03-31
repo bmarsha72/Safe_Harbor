@@ -4,5 +4,15 @@
 </section>
 <hr>
 <section>
-  <%= @business_match %>
+  <div class="container">
+    <div class="twelve columns">
+  <% @business_match.each do |business| %>
+  <%= business.business_name %>
+  <br>
+  <%= business.address %>
+  <br>
+  <%= business.city %>
+  <% end %>
+    </div>
+  </div>
 </section>

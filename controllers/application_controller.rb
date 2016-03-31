@@ -9,14 +9,6 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/map' do
-    erb :map
-  end
-
-  get '/business' do
-    erb :login_register
-  end
-
   get '/logout' do
     session[:logged_in] = false
     redirect '/'
@@ -25,6 +17,10 @@ class ApplicationController < Sinatra::Base
   post '/search' do
     @business_match = Business.where(city: params[:city_search].downcase).all
     erb :results
+  end
+
+  not_found do
+    "404 - Page not found"
   end
 
 end
