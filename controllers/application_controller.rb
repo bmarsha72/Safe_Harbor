@@ -6,12 +6,12 @@ class ApplicationController < Sinatra::Base
   set :public_folder, File.expand_path('../../public', __FILE__)
 
   get '/' do
-    erb :index
+    erb :home
   end
 
   get '/logout' do
     session[:logged_in] = false
-    redirect '/'
+    redirect '/index'
   end
 
   post '/search' do

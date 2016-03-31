@@ -60,7 +60,7 @@ class BusinessesController < ApplicationController
       :phone        => params[:phone]
     })
     p @current_user
-    redirect '/'
+    redirect '/index'
   end
 
   post '/login' do
@@ -80,7 +80,7 @@ class BusinessesController < ApplicationController
 
   get '/logout' do
     session[:logged_in] = false
-    redirect '/'
+    redirect '/index'
   end
 
   get '/account' do

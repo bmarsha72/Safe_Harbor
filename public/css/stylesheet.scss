@@ -6,6 +6,13 @@
   margin-top: 7rem;
   text-align: center;
 }
+
+body {
+ background-image: url('../images/failsafe.jpg');
+ background-size: cover;
+ background-attachment: static;
+}
+
 .footer {
   position: absolute;
   display: block;
@@ -67,4 +74,25 @@
       }
     }
   }
+}
+
+#home_getit {
+  body {
+  background-color: black;
+  }
+}
+
+#home_getit {
+  img, img.scale-with-grid {
+  display: block;
+  position: relative;
+  width: 915px;
+  margin: auto;
+  align-items: center;
+  }
+}
+#home_getit{
+  #intro {
+  display: none;
+}
 }

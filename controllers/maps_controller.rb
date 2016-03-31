@@ -1,6 +1,6 @@
 class MapsController < ApplicationController
 
-  get '/' do
+  get '/index' do
     erb :map
   end
 
