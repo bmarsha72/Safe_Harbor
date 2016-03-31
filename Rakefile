@@ -22,7 +22,6 @@ namespace :server do
 end
 
 namespace :db do
-
   desc 'Migrate'
   task :migrate => [:environment] do
     Sequel.extension :migration

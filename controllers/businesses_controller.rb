@@ -59,7 +59,7 @@ class BusinessesController < ApplicationController
       :phone        => params[:phone]
     })
     p @current_user
-    redirect '/'
+    redirect '/index'
   end
 
   post '/login' do
@@ -77,7 +77,7 @@ class BusinessesController < ApplicationController
 
   get '/logout' do
     session[:logged_in] = false
-    redirect '/'
+    redirect '/index'
   end
 
   get '/account' do
@@ -87,29 +87,5 @@ class BusinessesController < ApplicationController
       redirect '/business'
     end
   end
-
-
-
-# Creating a business
-# @business = Business.create name: 'whatever', another_thing: 'whatever, etc:' 'ok'
-#
-# # in controller responsible for login/signup
-# if @business
-# 	session[:logged_in] = true
-# 	session[:user_id] = @business.id
-# 	puts @business
-# 	puts @business.id
-# else
-# 	"You could not be created"
-# end
-#
-# # Updating a business
-# puts @current_user # just to see if it exists
-# # Creates a new contact associated with the business
-# @current_user.contact.create name: 'whoever', phone: 123456789, etc: 'something'
-#
-# # Update a Business contact
-# @current_user.contact.update name: 'new name', other_attrs: 'whatever'
-
 
 end
