@@ -1,0 +1,18 @@
+<section>
+  <h2>Results</h2>
+  <p> You searched for </p><h5><%= $city_search %></h5>
+</section>
+<hr>
+<section>
+  <div class="container">
+    <div class="twelve columns">
+  <% @business_match.each do |business| %>
+  <%= business.business_name %>
+  <br>
+  <%= business.address %>
+  <br>
+  <%= business.city %>
+  <% end %>
+    </div>
+  </div>
+</section>

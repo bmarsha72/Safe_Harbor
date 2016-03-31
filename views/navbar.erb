@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <div class="container">
+      <ul class="navbar-list">
+        <li class="navbar-item"><a class="navbar-link" href="/">Home</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="/aboutus">About</a></li>
+        <% if session[:logged_in] == true %>
+        <li class="navbar-item u-pull-right"><a class="navbar-link" href="/business/account">Account</a></li>
+        <li class="navbar-item u-pull-right"><a class="navbar-link" href="/logout">Logout</a></li>
+        <% else %>
+        <li class="navbar-item u-pull-right"><a class="navbar-link" href="/business">Login</a></li>
+        <% end %>
+      </ul>
+  </div>
+</nav>
