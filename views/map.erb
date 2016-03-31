@@ -1,19 +1,70 @@
-<div class="container">
-  <section class="header">
-    <div id="map">
-      <div id="map"></div>
+
+function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+<div id="map"></div>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+}
+<!-- Replace the value of the key parameter with your own API key. -->
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap">
+</script>
+JAVASCRIPTJAVASCRIPT + HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
     <script>
-      var map;
+
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3S22n5KuPdv8zvc_n5VWwmh2Ajynmca8&callback=initMap"
-    async defer></script>
-
-    </div>
-  </section>
-</div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap">
+    </script>
+  </body>
+</html>

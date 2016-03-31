@@ -10,6 +10,8 @@ require './models/contact'
 
 require './controllers/application_controller'
 require './controllers/businesses_controller'
+require './controllers/maps_controller'
 
 map('/')         { run ApplicationController }
 map('/business') { run BusinessesController }
+map('/map')      { run MapsController }
