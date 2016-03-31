@@ -9,20 +9,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/map' do
-    erb :map
-  end
-
-  get '/business' do
-    erb :login_register
-  end
-
   get '/logout' do
     session[:logged_in] = false
     redirect '/'
   end
 
   post '/search' do
+<<<<<<< HEAD
     # Do a search if they entered any string
     unless params[:city_search] == ''
       # Search the database for city locations
@@ -36,6 +29,14 @@ class ApplicationController < Sinatra::Base
     else
       #flash message
     end
+  end
+
+  not_found do
+    "404 - Page not found"
+=======
+    @business_match = Business.where(city: params[:city_search].downcase).all
+    erb :results
+>>>>>>> e7c0eeab28dc9e80ee63b9746fb259098d6d9bcf
   end
 
   not_found do
