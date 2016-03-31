@@ -1,6 +1,5 @@
 class ApplicationController < Sinatra::Base
 
-  @zip_code = ""
   enable :sessions
 
   set :views, File.expand_path('../../views', __FILE__)
@@ -10,23 +9,18 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/map' do
-    erb :map
-  end
-
-  get '/business' do
-    erb :login_register
-  end
-
   get '/logout' do
     session[:logged_in] = false
     redirect '/'
   end
 
   post '/search' do
-    @zip_code = params[:zipcode]
-    p params
+    @business_match = Business.where(city: params[:city_search].downcase).all
     erb :results
+  end
+
+  not_found do
+    "404 - Page not found"
   end
 
 end
