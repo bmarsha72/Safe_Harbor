@@ -6,11 +6,7 @@ GEM
     daemons (1.2.3)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
-<<<<<<< HEAD
-    dotenv (2.1.0)
-=======
     dotenv (2.1.1)
->>>>>>> e7c0eeab28dc9e80ee63b9746fb259098d6d9bcf
     eventmachine (1.2.0.1)
     ffi (1.9.10)
     geocoder (1.3.1)
@@ -20,10 +16,7 @@ GEM
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
-<<<<<<< HEAD
-=======
     method_source (0.8.2)
->>>>>>> e7c0eeab28dc9e80ee63b9746fb259098d6d9bcf
     mime-types (2.99.1)
     netrc (0.11.0)
     pg (0.18.4)
