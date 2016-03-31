@@ -2,18 +2,16 @@ require 'dotenv/tasks'
 require 'bundler'
 
 # heroku provides a ENV var called ENV['DATABASE_URL']
-if ENV['DATABASE_URL']
-  Bundler.require(:default, :production)
-  DB = Sequel.connect(ENV['DATABASE_URL'])
-else
-  Bundler.require(:default, :development)
-  DB = Sequel.sqlite('development.sqlite')
-end
-
-
 desc "Set up the environment"
 task :environment do
   ENV['RACK_ENV'] ||= 'development'
+  if ENV['DATABASE_URL']
+    Bundler.require(:default, :production)
+    DB = Sequel.connect(ENV['DATABASE_URL'])
+  else
+    Bundler.require(:default, :development)
+    DB = Sequel.sqlite('development.sqlite')
+  end
 end
 
 namespace :server do
@@ -24,8 +22,10 @@ namespace :server do
 end
 
 namespace :db do
+
   desc 'Migrate'
-  task :migrate do
-    require './migrations/001_setup'
+  task :migrate => [:environment] do
+    Sequel.extension :migration
+    Sequel::Migrator.run(DB, "migrations/")
   end
 end
