@@ -4,7 +4,7 @@ class MapsController < ApplicationController
   @longitude = ""
 
   get '/' do
-    erb :map
+    redirect '/'
   end
 
   post '/search' do

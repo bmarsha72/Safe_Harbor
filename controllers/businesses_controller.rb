@@ -15,6 +15,7 @@ class BusinessesController < ApplicationController
   end
 
   post '/register' do
+
     unless params[:username] == ''
       password = BCrypt::Password.create(params[:password])
       @business = Business.create({
@@ -80,7 +81,7 @@ class BusinessesController < ApplicationController
       redirect '/business'
     end
   end
-
+  
   get '/account' do
     if session[:logged_in] == true
       erb :account

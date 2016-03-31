@@ -3,21 +3,21 @@
   <p> You searched for </p><h5><%= $city_search %></h5>
 </section>
 <hr>
-<section>
-  <div id="map"></div>
-</section>
-<section>
-  <div class="container">
-    <div class="twelve columns">
-  <% @business_match.each do |business| %>
-  <%= business.business_name %>
-  <br>
-  <%= business.address %>
-  <br>
-  <%= business.city %>
-  <br>
-  <% business.contact %>
-  <% end %>
-    </div>
-  </div>
-</section>
+<div id="map"></div>
+
+  <script>
+    function initMap() {
+      var myLatLng = {lat: -25.363, lng: 131.044};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Hello World!'
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap"></script>

@@ -18,6 +18,11 @@ class ApplicationController < Sinatra::Base
     redirect '/index'
   end
 
+  post '/search' do
+    @business_match = Business.where(city: params[:city_search].downcase).all
+    erb :results
+  end
+
   not_found do
     "404 - Page not found"
   end
