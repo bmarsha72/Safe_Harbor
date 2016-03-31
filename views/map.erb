@@ -7,36 +7,90 @@
 <section>
   <div class="container">
     <div class="twelve columns">
-  <% @business_match.each do |business| %>
-  <%= business.business_name %>
-  <br>
-  <%= business.address %>
-  <br>
-  <%= business.city %>
-  <script>
-  var app = app || {};
-  app.fuck_it = <%= business.longitude %>;
-  app.fuck_it_two = <%= business.latitude %>;
-  </script>
-  <br>
-  -----------
-  <br>
-  <% end %>
+      <% @business_match.each do |business| %>
+          <%= business.business_name %>
+          <br>
+          <%= business.address %>
+          <br>
+          <%= business.city %>
+          <script>
+          var app = app || {};
+          app.fuck_it = <%= business.longitude %>;
+          app.fuck_it_two = <%= business.latitude %>;
+          </script>
+          <br>
+          -----------
+          <br>
+      <% end %>
     </div>
   </div>
 </section>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 
-<script>
+      var pulled_lat = <%= @latitude %>
+      var pulled_lng = <%= @longitude %>
+      var map;
+      var infowindow;
 
-console.log(app);
+      function initMap() {
+        var map_center = {lat: pulled_lat , lng: pulled_lng };
 
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: map_center,
+          zoom: 12
+        });
 
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: map_center,
+          radius: 500,
+          type: ['store']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
+    </script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBb3_D-jFgOwsvM-eFXzYrdR_vOMnrT4jQ&libraries=places&callback=initMap' async defer></script>
+
+<!-- <script>
 var business_latitude        = app.fuck_it_two;
 var business_longitude       = app.fuck_it;
 var citylatitude             = 35.784;
 var citylongitude            = -78.83;
-
 
   function initMap() {
     var myLatLng  = {lat: citylatitude, lng: citylongitude};
@@ -46,13 +100,8 @@ var citylongitude            = -78.83;
       zoom:   8,
       center: myLatLng
     });
-    // var iconBase: 'https://maps.google.com/mapsfiles/kml/shapes';
-    var marker = new google.maps.Marker({
-      position: myHelp,
-      map: map,
-      title: 'Hello World!'
-      // icon: iconBase + 'A_TransGender-Symbol_black-and-white.svg.png'
-    });
+    var markers = <%= @business_match.to_json %>;
+    console.log(markers)
   }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap"></script>
+</script> -->
+<!-- <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=' + ENV["MAPS_KEY"] + '&libraries=places'></script> -->
