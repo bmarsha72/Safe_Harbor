@@ -1,3 +1,9 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 section {
   margin-top: 7rem;
   text-align: center;
@@ -63,5 +69,7 @@ section {
   }
 }
 #map {
+  width: 70%;
   height: 70%;
+  margin-left: 18.5rem;
 }

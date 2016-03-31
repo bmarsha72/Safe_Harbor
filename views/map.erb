@@ -1,23 +1,58 @@
 <section>
   <h2>Results</h2>
   <p> You searched for </p><h5><%= $city_search %></h5>
-</section>
 <hr>
+</section>
 <div id="map"></div>
-
+<section>
+  <div class="container">
+    <div class="twelve columns">
+  <% @business_match.each do |business| %>
+  <%= business.business_name %>
+  <br>
+  <%= business.address %>
+  <br>
+  <%= business.city %>
   <script>
-    function initMap() {
-      var myLatLng = {lat: -25.363, lng: 131.044};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: myLatLng
-      });
-
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Hello World!'
-      });
-    }
+  var app = app || {};
+  app.fuck_it = <%= business.longitude %>;
+  app.fuck_it_two = <%= business.latitude %>;
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap"></script>
+  <br>
+  -----------
+  <br>
+  <% end %>
+    </div>
+  </div>
+</section>
+
+
+<script>
+
+console.log(app);
+
+
+var business_latitude        = app.fuck_it_two;
+var business_longitude       = app.fuck_it;
+var citylatitude             = 35.784;
+var citylongitude            = -78.83;
+
+
+  function initMap() {
+    var myLatLng  = {lat: citylatitude, lng: citylongitude};
+    var myHelp    = {lat: business_latitude, lng: business_longitude};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom:   8,
+      center: myLatLng
+    });
+    // var iconBase: 'https://maps.google.com/mapsfiles/kml/shapes';
+    var marker = new google.maps.Marker({
+      position: myHelp,
+      map: map,
+      title: 'Hello World!'
+      // icon: iconBase + 'A_TransGender-Symbol_black-and-white.svg.png'
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap"></script>

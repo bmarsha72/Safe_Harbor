@@ -12,7 +12,6 @@ task :environment do
     Bundler.require(:default, :development)
     DB = Sequel.sqlite('development.sqlite')
   end
-end
 
 namespace :server do
   desc "Start the server"

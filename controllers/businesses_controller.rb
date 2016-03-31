@@ -38,8 +38,9 @@ class BusinessesController < ApplicationController
     unless params[:city] == ''
       location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address=' + params[:city_search].to_json
       location  = JSON.parse(location.body)
-      latitude  = location['results'][0]['geometry']['location']['lat'].to_s
-      longitude = location['results'][0]['geometry']['location']['lng'].to_s
+      latitude  = location['results'][0]['geometry']['location']['lat']
+      longitude = location['results'][0]['geometry']['location']['lng']
+      binding.pry
     else
       #flash message
     end
@@ -81,7 +82,7 @@ class BusinessesController < ApplicationController
       redirect '/business'
     end
   end
-  
+
   get '/account' do
     if session[:logged_in] == true
       erb :account
