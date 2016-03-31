@@ -2,7 +2,6 @@ Sequel.migration do
   change do
     create_table(:businesses) do
       primary_key :id
-      foreign_key :contact
       String :username
       String :password
       String :email
@@ -21,6 +20,7 @@ Sequel.migration do
       String :name
       String :phone
       Boolean :on_location
+      foreign_key :business_id, :businesses
     end
   end
 end
