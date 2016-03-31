@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
 
   before do
     if session[:logged_in]
-      @current_user = Business[session[:curret_user_id]]
+      @current_user = Business[:id => session[:user_id]]
     end
   end
 
@@ -52,13 +52,19 @@ class BusinessesController < ApplicationController
       :latitude       => latitude,
       :longitude      => longitude
     })
-
-    @current_user.contact.update({
-      :on_location  => params[:on_location],
-      :name         => params[:name].downcase,
-      :phone        => params[:phone]
-    })
-    p @current_user
+    if @current_user.contact == nil
+      @current_user.contact = Contact.create({
+        :on_location  => params[:on_location],
+        :name         => params[:name].downcase,
+        :phone        => params[:phone]
+        })
+      else
+        @current_user.contact.update({
+          :on_location  => params[:on_location],
+          :name         => params[:name].downcase,
+          :phone        => params[:phone]
+        })
+      end
     redirect '/index'
   end
 
@@ -67,17 +73,12 @@ class BusinessesController < ApplicationController
     compare_to = BCrypt::Password.new(user.password)
     if user && compare_to == params[:password]
       session[:logged_in] = true
-      session[:current_user_id] = user.id
+      session[:_user_id] = user.id
       # @current_user = Business[session[:current_user_id]]
       redirect '/business/account'
     else
       redirect '/business'
     end
-  end
-
-  get '/logout' do
-    session[:logged_in] = false
-    redirect '/index'
   end
 
   get '/account' do
