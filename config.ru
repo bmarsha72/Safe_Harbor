@@ -1,7 +1,12 @@
 require 'bundler'
 Bundler.require
 
-DB = Sequel.sqlite('development.sqlite')
+# heroku provides a ENV var called ENV['DATABASE_URL']
+if ENV['DATABASE_URL']
+  DB = Sequel.connect(ENV['DATABASE_URL'])
+else
+  DB = Sequel.sqlite('development.sqlite')
+end
 
 Dotenv.load
 

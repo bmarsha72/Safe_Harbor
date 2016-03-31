@@ -11,3 +11,10 @@ namespace :server do
     system "rerun rackup"
   end
 end
+
+namespace :db do
+  desc 'Migrate'
+  task :migrate do
+    require './migrations/001_setup'
+  end
+end
