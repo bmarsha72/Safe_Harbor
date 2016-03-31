@@ -15,19 +15,7 @@ class BusinessesController < ApplicationController
   end
 
   post '/register' do
-<<<<<<< HEAD
-    password = BCrypt::Password.create(params[:password])
 
-    user = Business.create({
-      :username      => params[:username],
-      :password      => password,
-      :email         => params[:email]
-
-    })
-    session[:logged_in] = true
-    session[:email]  = session[:email]
-    redirect '/'
-=======
     unless params[:username] == ''
       password = BCrypt::Password.create(params[:password])
       @business = Business.create({
@@ -44,7 +32,6 @@ class BusinessesController < ApplicationController
           redirect '/business/account'
       end
       "You must enter a username"
->>>>>>> e7c0eeab28dc9e80ee63b9746fb259098d6d9bcf
   end
 
   post '/update' do
