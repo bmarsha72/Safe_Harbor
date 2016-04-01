@@ -1,6 +1,6 @@
 <section>
   <h2>Results</h2>
-  <p> You searched for </p><h5><%= $city_search %></h5>
+  <p> You searched for </p><h5><%= @city_search %></h5>
 <hr>
 </section>
 <div id="map"></div>
@@ -13,11 +13,6 @@
           <%= business.address %>
           <br>
           <%= business.city %>
-          <script>
-          var app = app || {};
-          app.fuck_it = <%= business.longitude %>;
-          app.fuck_it_two = <%= business.latitude %>;
-          </script>
           <br>
           -----------
           <br>
@@ -39,13 +34,28 @@
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-
-      var pulled_lat = <%= @latitude %>
-      var pulled_lng = <%= @longitude %>
       var map;
       var infowindow;
+      var pulled_lat = <%= @latitude %>;
+      var pulled_lng = <%= @longitude %>;
+      var businessesObject = <%= @business_match.to_json %>;
+      var businessArray = [{lat: 43.0389, lng: -87.9065}];
+      console.log(businessesObject);
 
+      business(businessesObject);
+
+      function business(businessesObject) {
+        console.log(businessesObject[0].latitude)
+        for(i=0; i < businessesObject.length; i++) {
+          businessArray.push(new Construct(businessesObject[i].latitude, businessesObject[i].longitude));
+          // console.log(businessesObject[i].latitude);
+        }
+      }
+
+      function Construct(lat, lng){
+        this.lat = parseFloat(lat),
+        this.lng = parseFloat(lng)
+      }
       function initMap() {
         var map_center = {lat: pulled_lat , lng: pulled_lng };
 
@@ -72,11 +82,14 @@
       }
 
       function createMarker(place) {
+        for(i=0; i < businessArray.length; i++) {
+        var pos = businessArray[i]
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: map,
-          position: place.geometry.location
+            position: pos
         });
+      }
 
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.setContent(place.name);
@@ -87,8 +100,8 @@
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBb3_D-jFgOwsvM-eFXzYrdR_vOMnrT4jQ&libraries=places&callback=initMap' async defer></script>
 
 <!-- <script>
-var business_latitude        = app.fuck_it_two;
-var business_longitude       = app.fuck_it;
+var business_latitude        = 35.784;
+var business_longitude       = -78.83;
 var citylatitude             = 35.784;
 var citylongitude            = -78.83;
 
@@ -100,8 +113,7 @@ var citylongitude            = -78.83;
       zoom:   8,
       center: myLatLng
     });
-    var markers = <%= @business_match.to_json %>;
-    console.log(markers)
   }
-</script> -->
-<!-- <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=' + ENV["MAPS_KEY"] + '&libraries=places'></script> -->
+
+</script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=' + ENV["MAPS_KEY"] + '&libraries=places&callback=initMap' async defer></script> -->
