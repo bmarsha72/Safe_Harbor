@@ -1,38 +1,25 @@
-  
-function initMap() {
-  var myLatLng = {lat: -25.363, lng: 131.044};
-
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: myLatLng
-  });
-
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
-}
+<section>
+  <h2>Results</h2>
+  <p> You searched for </p><h5><%= @city_search %></h5>
+<hr>
+</section>
 <div id="map"></div>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  height: 100%;
-}
-<!-- Replace the value of the key parameter with your own API key. -->
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap">
-</script>
-JAVASCRIPTJAVASCRIPT + HTML
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple markers</title>
+<section>
+  <div class="container">
+    <div class="twelve columns">
+      <% @business_match.each do |business| %>
+          <%= business.business_name %>
+          <br>
+          <%= business.address %>
+          <br>
+          <%= business.city %>
+          <br>
+          -----------
+          <br>
+      <% end %>
+    </div>
+  </div>
+</section>
     <style>
       html, body {
         height: 100%;
@@ -43,28 +30,90 @@ JAVASCRIPTJAVASCRIPT + HTML
         height: 100%;
       }
     </style>
-  </head>
-  <body>
-    <div id="map"></div>
     <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      var map;
+      var infowindow;
+      var pulled_lat = <%= @latitude %>;
+      var pulled_lng = <%= @longitude %>;
+      var businessesObject = <%= @business_match.to_json %>;
+      var businessArray = [{lat: 43.0389, lng: -87.9065}]; //lat and lng hardcoded into the array
+      console.log(businessesObject);
 
+      business(businessesObject);
+
+      function business(businessesObject) {
+        console.log(businessesObject[0].latitude)
+        for(i=0; i < businessesObject.length; i++) {
+          businessArray.push(new Construct(businessesObject[i].latitude, businessesObject[i].longitude));
+          // console.log(businessesObject[i].latitude);
+        }
+      }
+
+      function Construct(lat, lng){
+        this.lat = parseFloat(lat),
+        this.lng = parseFloat(lng)
+      }
       function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+        var map_center = {lat: pulled_lat , lng: pulled_lng };
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: map_center,
+          zoom: 12
         });
 
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: map_center,
+          radius: 500,
+          type: ['store']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+      }
+
+      function createMarker(place) {
+        for(i=0; i < businessArray.length; i++) {
+        var pos = businessArray[i]
+        var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
-          position: myLatLng,
           map: map,
-          title: 'Hello World!'
+            position: pos
+        });
+      }
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
         });
       }
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCrhEaAb7R1r4ey2H9cUzGQT794-wFWU&callback=initMap">
-    </script>
-  </body>
-</html>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBb3_D-jFgOwsvM-eFXzYrdR_vOMnrT4jQ&libraries=places&callback=initMap' async defer></script>
+
+<!-- <script>
+var business_latitude        = 35.784;
+var business_longitude       = -78.83;
+var citylatitude             = 35.784;
+var citylongitude            = -78.83;
+
+  function initMap() {
+    var myLatLng  = {lat: citylatitude, lng: citylongitude};
+    var myHelp    = {lat: business_latitude, lng: business_longitude};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom:   8,
+      center: myLatLng
+    });
+  }
+
+</script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=' + ENV["MAPS_KEY"] + '&libraries=places&callback=initMap' async defer></script> -->

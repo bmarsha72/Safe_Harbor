@@ -6,10 +6,10 @@ class ApplicationController < Sinatra::Base
   set :public_folder, File.expand_path('../../public', __FILE__)
 
   get '/' do
-    erb :home, layout: :layout_home
+    erb :home
   end
 
-  get '/home' do
+  get '/index' do
     erb :index
   end
 
@@ -19,14 +19,7 @@ class ApplicationController < Sinatra::Base
 
   get '/logout' do
     session[:logged_in] = false
-    redirect '/'
-  end
-
-  post '/search' do
-
-    @business_match = Business.where(city: params[:city_search].downcase).all
-    erb :results
-
+    redirect '/index'
   end
 
   not_found do

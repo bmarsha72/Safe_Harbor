@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
 
   before do
     if session[:logged_in]
-      @current_user = Business[session[:curret_user_id]]
+      @current_user = Business[:id => session[:user_id]]
     end
   end
 
@@ -36,10 +36,10 @@ class BusinessesController < ApplicationController
 
   post '/update' do
     unless params[:city] == ''
-      location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address=' + params[:city_search].to_json
+      location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address=' + params[:city].to_json
       location  = JSON.parse(location.body)
-      latitude  = location['results'][0]['geometry']['location']['lat'].to_s
-      longitude = location['results'][0]['geometry']['location']['lng'].to_s
+      latitude  = location['results'][0]['geometry']['location']['lat']
+      longitude = location['results'][0]['geometry']['location']['lng']
     else
       #flash message
     end
@@ -60,6 +60,19 @@ class BusinessesController < ApplicationController
       :phone        => params[:phone]
     })
     p @current_user
+    if @current_user.contact == nil
+      @current_user.contact = Contact.create({
+        :on_location  => params[:on_location],
+        :name         => params[:name].downcase,
+        :phone        => params[:phone]
+        })
+      else
+        @current_user.contact.update({
+          :on_location  => params[:on_location],
+          :name         => params[:name].downcase,
+          :phone        => params[:phone]
+        })
+      end
     redirect '/index'
   end
 
@@ -68,19 +81,12 @@ class BusinessesController < ApplicationController
     compare_to = BCrypt::Password.new(user.password)
     if user && compare_to == params[:password]
       session[:logged_in] = true
-      session[:current_user_id] = user.id
+      session[:_user_id] = user.id
       # @current_user = Business[session[:current_user_id]]
       redirect '/business/account'
     else
       redirect '/business'
     end
-  end
-
-
-
-  get '/logout' do
-    session[:logged_in] = false
-    redirect '/'
   end
 
   get '/account' do
@@ -90,29 +96,5 @@ class BusinessesController < ApplicationController
       redirect '/business'
     end
   end
-
-
-
-# Creating a business
-# @business = Business.create name: 'whatever', another_thing: 'whatever, etc:' 'ok'
-#
-# # in controller responsible for login/signup
-# if @business
-# 	session[:logged_in] = true
-# 	session[:user_id] = @business.id
-# 	puts @business
-# 	puts @business.id
-# else
-# 	"You could not be created"
-# end
-#
-# # Updating a business
-# puts @current_user # just to see if it exists
-# # Creates a new contact associated with the business
-# @current_user.contact.create name: 'whoever', phone: 123456789, etc: 'something'
-#
-# # Update a Business contact
-# @current_user.contact.update name: 'new name', other_attrs: 'whatever'
-
 
 end
