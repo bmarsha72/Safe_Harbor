@@ -6,6 +6,10 @@ class ApplicationController < Sinatra::Base
   set :public_folder, File.expand_path('../../public', __FILE__)
 
   get '/' do
+    erb :home, layout: :layout_home
+  end
+
+  get '/home' do
     erb :home
   end
 

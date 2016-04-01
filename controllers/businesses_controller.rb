@@ -40,7 +40,6 @@ class BusinessesController < ApplicationController
       location  = JSON.parse(location.body)
       latitude  = location['results'][0]['geometry']['location']['lat']
       longitude = location['results'][0]['geometry']['location']['lng']
-      binding.pry
     else
       #flash message
     end

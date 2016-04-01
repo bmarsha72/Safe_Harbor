@@ -1,13 +1,17 @@
 <section>
+  <div class="plate">
   <h2>Results</h2>
-  <p> You searched for </p><h5><%= @city_search %></h5>
+  <p> You searched for <strong><%= @city_search %></strong></p>
+</div>
+
 <hr>
 </section>
 <div id="map"></div>
 <section>
   <div class="container">
     <div class="twelve columns">
-      <% @business_match.each do |business| %>
+      <div class="plate">
+        <% @business_match.each do |business| %>
           <%= business.business_name %>
           <br>
           <%= business.address %>
@@ -17,6 +21,7 @@
           -----------
           <br>
       <% end %>
+      </div>
     </div>
   </div>
 </section>
