@@ -13,11 +13,8 @@ class MapsController < ApplicationController
     else
       redirect '/index'
     end
-    p @latitude
-    p @longitude
-    
     @business_match = Business.where(city: params[:city_search].downcase).all
-    $city_search = params[:city_search]
+    @city_search = params[:city_search]
     erb :map
   end
 

@@ -35,11 +35,12 @@ class BusinessesController < ApplicationController
   end
 
   post '/update' do
-    unless params[:city] == ''
-      location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address=' + params[:city].to_json
+    unless params[:address] == ''
+      location  = RestClient.get 'https://maps.googleapis.com/maps/api/geocode/json?key=' + ENV["MAPS_KEY"] + '&address='+params[:address]+params[:city].to_json
       location  = JSON.parse(location.body)
       latitude  = location['results'][0]['geometry']['location']['lat']
       longitude = location['results'][0]['geometry']['location']['lng']
+      binding.pry
     else
       #flash message
     end
