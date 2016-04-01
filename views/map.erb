@@ -39,7 +39,7 @@
       var pulled_lat = <%= @latitude %>;
       var pulled_lng = <%= @longitude %>;
       var businessesObject = <%= @business_match.to_json %>;
-      var businessArray = [{lat: 43.0389, lng: -87.9065}];
+      var businessArray = [{lat: 43.0389, lng: -87.9065}]; //lat and lng hardcoded into the array
       console.log(businessesObject);
 
       business(businessesObject);
