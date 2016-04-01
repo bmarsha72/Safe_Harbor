@@ -13,6 +13,10 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/about' do
+    erb :aboutus
+  end
+
   get '/logout' do
     session[:logged_in] = false
     redirect '/index'

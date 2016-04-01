@@ -1,67 +1,42 @@
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0; }
+/*
+Error: Invalid CSS after "}": expected "}", was ""
+        on line 233 of public/css/stylesheet.scss
 
-section {
-  margin-top: 7rem;
-  text-align: center; }
+228: #map {
+229:   width: 70%;
+230:   height: 70%;
+231:   margin-left: 18.5rem;
+232: }
 
-.footer {
-  display: block;
-  width: 100%;
-  height: 5.5rem;
-  background: #444444;
-  z-index: 99;
-  border-top: 1px solid #000; }
-  .footer .footer-list {
-    list-style: none; }
-    .footer .footer-list .footer-item {
-      display: inline; }
-      .footer .footer-list .footer-item .footer-link {
-        text-decoration: none;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .2rem;
-        margin-right: 35px;
-        transition: color 0.2s ease;
-        line-height: 5.5rem; }
-      .footer .footer-list .footer-item .footer-link:hover {
-        color: #1EAEDB; }
-
-.navbar {
-  position: fixed;
-  display: block;
-  width: 100%;
-  top: 0;
-  left: 0;
-  height: 5.5rem;
-  background: #fff;
-  z-index: 99;
-  border-bottom: 1px solid #000; }
-  .navbar .navbar-list {
-    list-style: none; }
-    .navbar .navbar-list .navbar-item {
-      display: inline; }
-      .navbar .navbar-list .navbar-item .navbar-link {
-        text-decoration: none;
-        color: #000;
-        text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: .2rem;
-        margin-right: 35px;
-        transition: color 0.2s ease;
-        line-height: 5.5rem; }
-      .navbar .navbar-list .navbar-item .navbar-link:hover {
-        color: #1EAEDB; }
-
-#map {
-  width: 70%;
-  height: 70%;
-  margin-left: 18.5rem; }
-
-/*# sourceMappingURL=stylesheet.css.map */
+Backtrace:
+public/css/stylesheet.scss:233
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1179:in `expected'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1115:in `expected'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:1110:in `tok!'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:656:in `block'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:647:in `ruleset'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:673:in `block_child'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:666:in `block_contents'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:123:in `stylesheet'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/scss/parser.rb:39:in `parse'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:403:in `_to_tree'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:471:in `on_file_changed'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:328:in `block in watch'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/listener.rb:252:in `call'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/listener.rb:252:in `on_change'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/adapter.rb:254:in `call'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/adapter.rb:254:in `report_changes'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/adapter.rb:323:in `poll_changed_directories'
+/Users/deathsongdev/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/sass-3.4.21/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"}\": expected \"}\", was \"\"\A         on line 233 of public/css/stylesheet.scss\A \A 228: #map {\A 229:   width: 70%;\A 230:   height: 70%;\A 231:   margin-left: 18.5rem;\A 232: }"; }
