@@ -43,7 +43,6 @@ class BusinessesController < ApplicationController
     else
       #flash message
     end
-    # find the one to update
     @current_user.update({
       :phone          => params[:phone],
       :address        => params[:address].downcase,
