@@ -80,7 +80,7 @@ class BusinessesController < ApplicationController
 
   get '/logout' do
     session[:logged_in] = false
-    redirect '/index'
+    redirect '/'
   end
 
   get '/account' do
